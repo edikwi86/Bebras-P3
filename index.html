@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Akun Siswa | SMPK 3 PENABUR</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+:root {
+    --navy: #071d35;
+    --blue: #125b9a;
+    --primary: #238bd0;
+    --light-blue: #e9f5ff;
+    --text: #19334d;
+    --muted: #8495a8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 15%, rgba(39,151,221,.23), transparent 32%),
+        radial-gradient(circle at 90% 85%, rgba(24,102,172,.30), transparent 35%),
+        linear-gradient(135deg, #06182d, #0b3155 55%, #092440);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 18px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background decoration */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.08);
+    pointer-events: none;
+}
+
+body::before {
+    width: 430px;
+    height: 430px;
+    top: -180px;
+    right: -120px;
+}
+
+body::after {
+    width: 350px;
+    height: 350px;
+    bottom: -160px;
+    left: -100px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.school-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    animation: fadeDown .8s ease;
+}
+
+.logo {
+    width: 76px;
+    height: 76px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 17px;
+    font-size: 36px;
+    color: white;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+/* Jika memiliki logo sekolah, ganti ikon di atas
+   dengan <img src="logo.png" class="logo-img"> */
+
+.school-header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.school-header p {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #9ec9eb;
+    margin-top: 7px;
+    font-weight: 600;
+}
+
+/* Main card */
+.card {
+    background: rgba(255,255,255,.97);
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 25px 70px rgba(0,0,0,.30);
+    animation: fadeUp .8s ease;
+}
+
+.card-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.heading-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 17px;
+    background: var(--light-blue);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin: 0 auto 15px;
+}
+
+.card-heading h2 {
+    color: var(--navy);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.card-heading p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 1.7;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8da4b9;
+    font-size: 18px;
+}
+
+input {
+    width: 100%;
+    height: 54px;
+    border: 1.5px solid #e2eaf1;
+    border-radius: 12px;
+    padding: 0 15px 0 47px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    transition: .3s;
+    background: #f9fbfd;
+}
+
+input:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(35,139,208,.10);
+}
+
+input::placeholder {
+    color: #aab7c4;
+    font-weight: 400;
+}
+
+.hint {
+    font-size: 10px;
+    color: #91a0af;
+    margin-top: 8px;
+}
+
+/* Button */
+.btn-search {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #1676b8, #269ddd);
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(35,139,208,.23);
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-search:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(35,139,208,.35);
+}
+
+.btn-search:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading */
+.loader-area {
+    display: none;
+    text-align: center;
+    padding: 25px 0 5px;
+}
+
+.spinner {
+    width: 35px;
+    height: 35px;
+    border: 3px solid #dcecf8;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+    margin: auto;
+}
+
+.loader-area p {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+/* Result */
+.result {
+    display: none;
+    margin-top: 23px;
+    padding: 20px;
+    border-radius: 15px;
+    animation: fadeUp .4s ease;
+}
+
+.result.success {
+    background: #effaf4;
+    border: 1px solid #ccebd9;
+    color: #17643c;
+}
+
+.result.warning {
+    background: #fff8e9;
+    border: 1px solid #f3dfad;
+    color: #89600d;
+}
+
+.result.error {
+    background: #fff1f1;
+    border: 1px solid #f2cccc;
+    color: #a32d37;
+}
+
+.result-icon {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.result h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.result p {
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.student-info {
+    background: rgba(255,255,255,.75);
+    padding: 13px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.student-info div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    padding: 6px 0;
+}
+
+.student-info span:first-child {
+    color: #718397;
+}
+
+.student-info span:last-child {
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+}
+
+.status-label {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 9px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 800;
+    background: rgba(255,255,255,.7);
+}
+
+.result small {
+    display: block;
+    margin-top: 13px;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 24px;
+    color: rgba(255,255,255,.55);
+    font-size: 10px;
+    line-height: 2;
+}
+
+.footer strong {
+    color: #b7dcf7;
+    font-weight: 700;
+}
+
+.footer i {
+    color: #66b9ec;
+}
+
+/* Animations */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media(max-width: 480px) {
+    body {
+        padding: 25px 15px;
+    }
+
+    .card {
+        padding: 26px 21px;
+        border-radius: 21px;
+    }
+
+    .school-header h1 {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- HEADER SEKOLAH -->
+    <div class="school-header">
+        <div class="logo">
+            <i class="bi bi-mortarboard-fill"></i>
+        </div>
+
+        <h1>SMPK 3 PENABUR</h1>
+        <p>LEARN • GROW • SERVE</p>
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="card">
+
+        <div class="card-heading">
+            <div class="heading-icon">
+                <i class="bi bi-person-lock"></i>
+            </div>
+
+            <h2>Portal Akun Siswa</h2>
+
+            <p>
+                Selamat datang di Sistem Informasi Akun Siswa.
+                Masukkan NISN untuk memeriksa status akun pembelajaran Anda.
+            </p>
+        </div>
+
+        <!-- FORM -->
+        <form id="formAkun">
+
+            <div class="form-group">
+                <label for="nisn">
+                    NOMOR INDUK SISWA NASIONAL (NISN)
+                </label>
+
+                <div class="input-wrapper">
+                    <i class="bi bi-person-vcard"></i>
+
+                    <input
+                        type="text"
+                        id="nisn"
+                        maxlength="10"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        placeholder="Masukkan 10 digit NISN..."
+                        required
+                    >
+                </div>
+
+                <div class="hint">
+                    <i class="bi bi-info-circle"></i>
+                    Pastikan NISN yang dimasukkan sudah benar.
+                </div>
+            </div>
+
+            <button type="submit" class="btn-search" id="btnCek">
+                <i class="bi bi-search"></i>
+                CEK AKUN SAYA
+            </button>
+
+        </form>
+
+        <!-- LOADING -->
+        <div class="loader-area" id="loader">
+            <div class="spinner"></div>
+            <p>Sedang memeriksa data akun Anda...</p>
+        </div>
+
+        <!-- HASIL -->
+        <div class="result" id="result" role="status" aria-live="polite"></div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <strong>SMPK 3 PENABUR</strong><br>
+        Sistem Informasi Akademik dan Akun Siswa<br>
+        <i class="bi bi-shield-check"></i>
+        Secure Student Information Portal
+        <br>
+        © 2026 SMPK 3 PENABUR. All Rights Reserved.
+    </div>
+
+</div>
+
+<script>
+
+// Ganti dengan endpoint backend sekolah yang sudah diamankan.
+const API_URL = "/api/cek-akun-siswa";
+
+const form = document.getElementById("formAkun");
+const nisnInput = document.getElementById("nisn");
+const btn = document.getElementById("btnCek");
+const loader = document.getElementById("loader");
+const result = document.getElementById("result");
+
+nisnInput.addEventListener("input", function() {
+    this.value = this.value.replace(/\D/g, "").slice(0, 10);
+});
+
+form.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const nisn = nisnInput.value.trim();
+
+    if (!/^\d{10}$/.test(nisn)) {
+        tampilkanPesan(
+            "NISN harus terdiri dari 10 digit angka.",
+            "error"
+        );
+        return;
+    }
+
+    loader.style.display = "block";
+    result.style.display = "none";
+    btn.disabled = true;
+
+    try {
+
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "same-origin",
+            body: JSON.stringify({ nisn: nisn })
+        });
+
+        if (!response.ok) {
+            throw new Error("Gagal mengambil data akun.");
+        }
+
+        const data = await response.json();
+
+        if (!data.found) {
+            tampilkanPesan(
+                "NISN tidak ditemukan. Silakan periksa kembali nomor NISN Anda.",
+                "error"
+            );
+            return;
+        }
+
+        if (!data.accountReady) {
+            tampilkanStatusAkun(data, false);
+        } else {
+            tampilkanStatusAkun(data, true);
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        tampilkanPesan(
+            "Terjadi kendala saat menghubungkan ke server. Silakan coba kembali atau hubungi Tim IT Sekolah.",
+            "error"
+        );
+
+    } finally {
+
+        loader.style.display = "none";
+        btn.disabled = false;
+
+    }
+
+});
+
+function tampilkanPesan(pesan, tipe) {
+
+    result.className = "result " + tipe;
+    result.replaceChildren();
+
+    const icon = document.createElement("div");
+    icon.className = "result-icon";
+
+    const heading = document.createElement("h3");
+    heading.textContent =
+        tipe === "error" ? "Informasi" : "Pemberitahuan";
+
+    const description = document.createElement("p");
+    description.textContent = pesan;
+
+    icon.innerHTML =
+        tipe === "error"
+        ? '<i class="bi bi-exclamation-circle"></i>'
+        : '<i class="bi bi-info-circle"></i>';
+
+    result.append(icon, heading, description);
+    result.style.display = "block";
+}
+
+function tampilkanStatusAkun(data, siap) {
+
+    result.className = "result " + (siap ? "success" : "warning");
+    result.replaceChildren();
+
+    const icon = document.createElement("div");
+    icon.className = "result-icon";
+    icon.innerHTML = siap
+        ? '<i class="bi bi-check-circle-fill"></i>'
+        : '<i class="bi bi-exclamation-triangle-fill"></i>';
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Halo, " + data.nama + "!";
+
+    const description = document.createElement("p");
+    description.textContent = siap
+        ? "Data siswa berhasil ditemukan. Akun pembelajaran Anda telah tersedia."
+        : "Data siswa berhasil ditemukan, tetapi Anda belum mempunyai akun pembelajaran.";
+
+    const info = document.createElement("div");
+    info.className = "student-info";
+
+    const fields = [
+        ["NISN", data.nisn],
+        ["Nama Siswa", data.nama],
+        ["Kelas", data.kelas]
+    ];
+
+    if (siap && data.email) {
+        fields.push(["Email Pembelajaran", data.email]);
+    }
+
+    fields.forEach(([label, value]) => {
+        const row = document.createElement("div");
+        const left = document.createElement("span");
+        const right = document.createElement("span");
+
+        left.textContent = label;
+        right.textContent = value || "-";
+
+        row.append(left, right);
+        info.appendChild(row);
+    });
+
+    const status = document.createElement("div");
+    status.className = "status-label";
+    status.textContent = siap
+        ? "✓ AKUN PEMBELAJARAN AKTIF"
+        : "⚠ AKUN BELUM TERSEDIA";
+
+    const note = document.createElement("small");
+    note.textContent = siap
+        ? "Jaga kerahasiaan informasi akun Anda. Jika mengalami kendala login, hubungi Tim IT Sekolah."
+        : "Silakan hubungi Wali Kelas atau Tim IT Sekolah untuk proses pembuatan akun.";
+
+    result.append(icon, heading, description, info, status, note);
+    result.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
