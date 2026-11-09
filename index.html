@@ -1,354 +1,512 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Akun Bebras | SMPK 3 PENABUR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Akun Bebras | SMPK 3 PENABUR</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+  --bg: #071426;
+  --panel: #10223a;
+  --panel2: #0b1b30;
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --text: #f1f5ff;
+  --muted: #94a9c5;
+  --border: rgba(148, 163, 184, .16);
+}
 
-    body {
-      min-height: 100vh;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: #eaf1ff;
-      background:
-        radial-gradient(circle at 10% 10%, #183c70 0, transparent 35%),
-        radial-gradient(circle at 90% 90%, #123e4b 0, transparent 35%),
-        #071426;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    .container {
-      width: 100%;
-      max-width: 780px;
-    }
+body {
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 15% 5%, #153968 0%, transparent 38%),
+    radial-gradient(ellipse at 90% 90%, #0b4250 0%, transparent 35%),
+    var(--bg);
+  padding: 30px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .brand {
-      text-align: center;
-      margin-bottom: 28px;
-    }
+.page {
+  width: 100%;
+  max-width: 680px;
+  margin: auto;
+}
 
-    .brand-icon {
-      width: 66px;
-      height: 66px;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 16px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #2563eb, #06b6d4);
-      font-size: 30px;
-      box-shadow: 0 12px 35px #0ea5e944;
-    }
+.brand {
+  text-align: center;
+  margin-bottom: 27px;
+}
 
-    .brand h1 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
+.brand-logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 17px;
+  padding: 9px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 12px 32px rgba(0,0,0,.22);
+}
 
-    .brand p {
-      color: #9db1ce;
-      font-size: 13px;
-      margin-top: 8px;
-    }
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-    .panel {
-      background: rgba(17, 35, 59, .88);
-      border: 1px solid rgba(148, 180, 220, .17);
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 24px 70px #0005;
-      backdrop-filter: blur(16px);
-    }
+.brand h1 {
+  font-size: clamp(21px, 4vw, 27px);
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
 
-    .panel h2 {
-      font-size: 21px;
-      margin-bottom: 8px;
-    }
+.brand p {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 9px;
+  text-transform: uppercase;
+}
 
-    .subtitle {
-      color: #9db1ce;
-      font-size: 13px;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
+.card {
+  background: rgba(16, 34, 58, .92);
+  border: 1px solid var(--border);
+  border-radius: 23px;
+  padding: 32px;
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+  backdrop-filter: blur(18px);
+}
 
-    .field {
-      margin-bottom: 18px;
-    }
+.section-label {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 
-    .field label {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 9px;
-      color: #c8d8ee;
-    }
+.card h2 {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -.7px;
+}
 
-    .field input {
-      width: 100%;
-      padding: 15px 16px;
-      border: 1px solid #314a6b;
-      border-radius: 12px;
-      background: #0a1b30;
-      color: white;
-      font: inherit;
-      outline: none;
-    }
+.description {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 9px;
+  margin-bottom: 25px;
+}
 
-    .field input:focus {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 3px #38bdf822;
-    }
+.form-group {
+  margin-bottom: 18px;
+}
 
-    .login-btn {
-      width: 100%;
-      border: 0;
-      padding: 15px;
-      border-radius: 12px;
-      background: linear-gradient(100deg, #2563eb, #0891b2);
-      color: white;
-      font: inherit;
-      font-weight: 800;
-      cursor: pointer;
-      margin-top: 5px;
-    }
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 9px;
+}
 
-    .login-btn:disabled {
-      opacity: .6;
-      cursor: wait;
-    }
+.input-wrap {
+  position: relative;
+}
 
-    .message {
-      margin-top: 16px;
-      font-size: 13px;
-      line-height: 1.6;
-      display: none;
-      padding: 12px;
-      border-radius: 10px;
-    }
+.input-wrap i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7895b7;
+}
 
-    .message.error {
-      display: block;
-      color: #fecaca;
-      background: #7f1d1d44;
-    }
+.input-wrap input {
+  width: 100%;
+  height: 49px;
+  padding: 0 15px 0 43px;
+  border: 1px solid #2b4564;
+  border-radius: 11px;
+  background: #091a2d;
+  color: white;
+  outline: none;
+  font-family: inherit;
+  font-size: 12px;
+  transition: .2s;
+}
 
-    .message.success {
-      display: block;
-      color: #bbf7d0;
-      background: #14532d55;
-    }
+.input-wrap input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px #22d3ee16;
+}
 
-    #dashboard {
-      display: none;
-    }
+.login-btn {
+  width: 100%;
+  height: 49px;
+  margin-top: 6px;
+  border: 0;
+  border-radius: 11px;
+  color: white;
+  background: linear-gradient(100deg, #2563eb, #0891b2);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  cursor: pointer;
+  transition: .25s;
+}
 
-    .student-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 22px 0;
-    }
+.login-btn:hover {
+  filter: brightness(1.13);
+  transform: translateY(-1px);
+}
 
-    .info-card, .credential {
-      background: #0a1b30;
-      border: 1px solid #263f5e;
-      border-radius: 14px;
-      padding: 16px;
-      min-width: 0;
-    }
+.login-btn:disabled {
+  opacity: .6;
+  cursor: wait;
+  transform: none;
+}
 
-    .info-card small, .credential small {
-      display: block;
-      color: #91a9c8;
-      font-size: 11px;
-      margin-bottom: 9px;
-    }
+.message {
+  display: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 11px;
+  margin-top: 16px;
+  line-height: 1.6;
+}
 
-    .info-card strong {
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
+.message.error {
+  display: block;
+  color: #fecaca;
+  background: #7f1d1d40;
+  border: 1px solid #ef444433;
+}
 
-    .credential {
-      margin-top: 12px;
-    }
+.message.success {
+  display: block;
+  color: #bbf7d0;
+  background: #14532d40;
+  border: 1px solid #22c55e33;
+}
 
-    .credential-value {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
+#dashboard {
+  display: none;
+}
 
-    .credential-value strong {
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      font-size: 15px;
-    }
+.dashboard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 23px;
+}
 
-    .copy-btn {
-      border: 1px solid #3a5779;
-      color: #bfdbfe;
-      background: #193451;
-      border-radius: 9px;
-      padding: 8px 11px;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
+.status {
+  font-size: 10px;
+  font-weight: 700;
+  color: #86efac;
+  background: #14532d66;
+  border: 1px solid #22c55e33;
+  border-radius: 30px;
+  padding: 7px 11px;
+  white-space: nowrap;
+}
 
-    .logout-btn {
-      margin-top: 22px;
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #475569;
-      color: #cbd5e1;
-      background: transparent;
-      border-radius: 11px;
-      cursor: pointer;
-      font: inherit;
-    }
+.identity {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 11px;
+  margin-bottom: 24px;
+}
 
-    .footer {
-      text-align: center;
-      color: #7187a5;
-      font-size: 11px;
-      margin-top: 22px;
-      line-height: 1.8;
-    }
+.identity-item {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  padding: 16px 13px;
+  border-radius: 13px;
+  min-width: 0;
+}
 
-    @media(max-width: 560px) {
-      .panel {
-        padding: 22px 18px;
-      }
+.identity-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .8px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
 
-      .student-info {
-        grid-template-columns: 1fr;
-      }
+.identity-item strong {
+  display: block;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
 
-      .credential-value {
-        align-items: flex-start;
-      }
-    }
-  </style>
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 22px 0;
+}
+
+.credential-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+  color: #dbeafe;
+  margin-bottom: 13px;
+}
+
+.credential {
+  padding: 16px;
+  border-radius: 13px;
+  background: linear-gradient(110deg, #0b1d32, #102943);
+  border: 1px solid #294662;
+  margin-bottom: 11px;
+}
+
+.credential small {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.credential-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 9px;
+}
+
+.credential-content strong {
+  font-size: 14px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  border: 1px solid #385775;
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #193550;
+  color: #bfdbfe;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.logout-btn {
+  width: 100%;
+  height: 43px;
+  margin-top: 13px;
+  background: transparent;
+  border: 1px solid #42556d;
+  border-radius: 10px;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+  color: #7187a5;
+  font-size: 10px;
+  margin-top: 23px;
+  line-height: 1.9;
+}
+
+@media(max-width: 540px) {
+  body {
+    padding: 24px 14px;
+  }
+
+  .card {
+    padding: 23px 18px;
+    border-radius: 18px;
+  }
+
+  .identity {
+    grid-template-columns: 1fr;
+  }
+
+  .identity-item {
+    padding: 13px 15px;
+  }
+
+  .dashboard-top {
+    align-items: flex-start;
+  }
+
+  .credential-content strong {
+    font-size: 12px;
+  }
+}
+
+@media(min-width: 541px) {
+  .card {
+    padding: 35px 38px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
 
-    <header class="brand">
-      <div class="brand-icon">
-        <i class="bi bi-mortarboard-fill"></i>
-      </div>
-      <h1>PORTAL AKUN BEBRAS</h1>
-      <p>SMPK 3 PENABUR · Sistem Informasi Akun Siswa</p>
-    </header>
+<div class="page">
 
-    <section class="panel" id="loginPanel">
-      <h2>Selamat Datang!</h2>
-      <p class="subtitle">
-        Masukkan NISN dan kode login untuk melihat informasi akun Bebras Anda.
-      </p>
+  <header class="brand">
+    <div class="brand-logo">
+      <img src="logo-penabur.png" alt="Logo BPK PENABUR">
+    </div>
+    <h1>PORTAL AKUN BEBRAS</h1>
+    <p>SMPK 3 PENABUR</p>
+  </header>
 
-      <form id="loginForm">
-        <div class="field">
-          <label for="nisn">NISN</label>
+  <section class="card" id="loginPanel">
+    <div class="section-label">Student Access</div>
+    <h2>Selamat Datang</h2>
+    <p class="description">
+      Silakan masuk menggunakan NISN dan kode login
+      untuk mengakses informasi akun Bebras.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+        <label for="nisn">NISN SISWA</label>
+        <div class="input-wrap">
+          <i class="bi bi-person-vcard"></i>
           <input
-            type="text"
             id="nisn"
-            inputmode="numeric"
+            type="text"
             maxlength="10"
-            placeholder="Masukkan 10 digit NISN"
-            required
-          >
+            inputmode="numeric"
+            placeholder="Masukkan NISN"
+            required>
         </div>
+      </div>
 
-        <div class="field">
-          <label for="kodeLogin">KODE LOGIN</label>
+      <div class="form-group">
+        <label for="kodeLogin">KODE LOGIN</label>
+        <div class="input-wrap">
+          <i class="bi bi-shield-lock"></i>
           <input
-            type="password"
             id="kodeLogin"
+            type="password"
             placeholder="Masukkan kode login"
-            required
-          >
-        </div>
-
-        <button class="login-btn" id="loginButton" type="submit">
-          <i class="bi bi-box-arrow-in-right"></i>
-          MASUK KE PORTAL
-        </button>
-      </form>
-
-      <div id="message" class="message"></div>
-    </section>
-
-    <section class="panel" id="dashboard">
-      <h2>Informasi Akun Siswa</h2>
-      <p class="subtitle">
-        Berikut adalah informasi akun Bebras Anda.
-        Simpan informasi ini dengan baik.
-      </p>
-
-      <div class="student-info">
-        <div class="info-card">
-          <small>NISN</small>
-          <strong id="outNisn">-</strong>
-        </div>
-        <div class="info-card">
-          <small>NAMA SISWA</small>
-          <strong id="outNama">-</strong>
-        </div>
-        <div class="info-card">
-          <small>KELAS</small>
-          <strong id="outKelas">-</strong>
+            required>
         </div>
       </div>
 
-      <div class="credential">
-        <small>USERNAME BEBRAS</small>
-        <div class="credential-value">
-          <strong id="outUser">-</strong>
-          <button class="copy-btn" onclick="copyText('outUser')">
-            <i class="bi bi-copy"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="credential">
-        <small>PASSWORD BEBRAS</small>
-        <div class="credential-value">
-          <strong id="outPassword">-</strong>
-          <button class="copy-btn" onclick="copyText('outPassword')">
-            <i class="bi bi-copy"></i>
-          </button>
-        </div>
-      </div>
-
-      <button class="logout-btn" onclick="logout()">
-        <i class="bi bi-box-arrow-left"></i>
-        Keluar dari Portal
+      <button class="login-btn" id="loginButton" type="submit">
+        MASUK KE PORTAL
+        <i class="bi bi-arrow-right"></i>
       </button>
-    </section>
 
-    <footer class="footer">
-      © 2026 SMPK 3 PENABUR<br>
-      Portal Informasi Akun Bebras Siswa
-    </footer>
+    </form>
 
-  </main>
+    <div id="message" class="message"></div>
+  </section>
 
-  <script src="script.js"></script>
+  <section class="card" id="dashboard">
+
+    <div class="dashboard-top">
+      <div>
+        <div class="section-label">Student Dashboard</div>
+        <h2>Informasi Akun</h2>
+      </div>
+      <div class="status">
+        <i class="bi bi-check-circle-fill"></i> AKTIF
+      </div>
+    </div>
+
+    <p class="description">
+      Informasi identitas dan kredensial akun Bebras siswa.
+    </p>
+
+    <div class="identity">
+      <div class="identity-item">
+        <small>NISN</small>
+        <strong id="outNisn">-</strong>
+      </div>
+
+      <div class="identity-item">
+        <small>NAMA SISWA</small>
+        <strong id="outNama">-</strong>
+      </div>
+
+      <div class="identity-item">
+        <small>KELAS</small>
+        <strong id="outKelas">-</strong>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="credential-title">
+      KREDENSIAL AKUN BEBRAS
+    </div>
+
+    <div class="credential">
+      <small>USERNAME BEBRAS</small>
+      <div class="credential-content">
+        <strong id="outUser">-</strong>
+        <button class="copy-btn" onclick="copyText('outUser')">
+          <i class="bi bi-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="credential">
+      <small>PASSWORD BEBRAS</small>
+      <div class="credential-content">
+        <strong id="outPassword">-</strong>
+        <button class="copy-btn" onclick="copyText('outPassword')">
+          <i class="bi bi-copy"></i>
+        </button>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+      <i class="bi bi-box-arrow-left"></i>
+      KELUAR DARI PORTAL
+    </button>
+
+  </section>
+
+  <footer class="footer">
+    © 2026 SMPK 3 PENABUR<br>
+    Sistem Informasi Akun Bebras Siswa
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
