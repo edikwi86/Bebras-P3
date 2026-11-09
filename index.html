@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Akun Siswa | SMPK 3 PENABUR</title>
+<title>Portal Akun Bebras | SMPK 3 PENABUR</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,646 +13,1053 @@
 
 <style>
 :root {
-    --navy: #071d35;
-    --blue: #125b9a;
-    --primary: #238bd0;
-    --light-blue: #e9f5ff;
-    --text: #19334d;
-    --muted: #8495a8;
+  --bg: #081326;
+  --panel: #101f37;
+  --panel2: #142844;
+  --blue: #478bff;
+  --cyan: #5bd4ed;
+  --text: #f4f8ff;
+  --muted: #91a5c1;
+  --border: rgba(255,255,255,.09);
+  --green: #43d6a0;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at 10% 15%, rgba(39,151,221,.23), transparent 32%),
-        radial-gradient(circle at 90% 85%, rgba(24,102,172,.30), transparent 35%),
-        linear-gradient(135deg, #06182d, #0b3155 55%, #092440);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 35px 18px;
-    overflow-x: hidden;
-    position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 10% 0%, #173a65 0%, transparent 38%),
+    radial-gradient(ellipse at 95% 90%, #123b59 0%, transparent 35%),
+    var(--bg);
 }
 
-/* Background decoration */
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.08);
-    pointer-events: none;
+button, input {
+  font-family: inherit;
 }
 
-body::before {
-    width: 430px;
-    height: 430px;
-    top: -180px;
-    right: -120px;
+button {
+  cursor: pointer;
 }
 
-body::after {
-    width: 350px;
-    height: 350px;
-    bottom: -160px;
-    left: -100px;
+/* BACKGROUND */
+
+.background-glow {
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(42,124,255,.10);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: -1;
 }
 
-.wrapper {
-    width: 100%;
-    max-width: 480px;
-    position: relative;
-    z-index: 1;
+.glow-one { top: -150px; left: -100px; }
+.glow-two { bottom: -180px; right: -100px; }
+
+/* LOGIN */
+
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 25px;
 }
 
-/* Header */
-.school-header {
-    text-align: center;
-    color: white;
-    margin-bottom: 25px;
-    animation: fadeDown .8s ease;
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 42px;
+  border: 1px solid var(--border);
+  border-radius: 25px;
+  background: rgba(16,31,55,.86);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 90px rgba(0,0,0,.35);
 }
 
-.logo {
-    width: 76px;
-    height: 76px;
-    background: rgba(255,255,255,.12);
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 23px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 17px;
-    font-size: 36px;
-    color: white;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 38px;
 }
 
-/* Jika memiliki logo sekolah, ganti ikon di atas
-   dengan <img src="logo.png" class="logo-img"> */
-
-.school-header h1 {
-    font-size: 24px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
+.brand-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#397ef2,#42c7e9);
+  font-size: 25px;
+  box-shadow: 0 8px 25px rgba(54,131,246,.3);
 }
 
-.school-header p {
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: #9ec9eb;
-    margin-top: 7px;
-    font-weight: 600;
+.brand h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .5px;
 }
 
-/* Main card */
-.card {
-    background: rgba(255,255,255,.97);
-    border: 1px solid rgba(255,255,255,.5);
-    border-radius: 25px;
-    padding: 35px;
-    box-shadow: 0 25px 70px rgba(0,0,0,.30);
-    animation: fadeUp .8s ease;
+.brand p {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  margin-top: 5px;
 }
 
-.card-heading {
-    text-align: center;
-    margin-bottom: 30px;
+.login-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
-.heading-icon {
-    width: 55px;
-    height: 55px;
-    border-radius: 17px;
-    background: var(--light-blue);
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-    margin: 0 auto 15px;
+.login-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 30px;
 }
 
-.card-heading h2 {
-    color: var(--navy);
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.card-heading p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-top: 8px;
-    line-height: 1.7;
-}
-
-/* Form */
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 10px;
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #dce8f8;
 }
 
-.input-wrapper {
-    position: relative;
+.input-box {
+  position: relative;
 }
 
-.input-wrapper i {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #8da4b9;
-    font-size: 18px;
+.input-box i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8da6c7;
 }
 
-input {
-    width: 100%;
-    height: 54px;
-    border: 1.5px solid #e2eaf1;
-    border-radius: 12px;
-    padding: 0 15px 0 47px;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    outline: none;
-    transition: .3s;
-    background: #f9fbfd;
+.input-box input {
+  width: 100%;
+  padding: 15px 45px;
+  background: #0b192d;
+  color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  font-size: 12px;
+  transition: .25s;
 }
 
-input:focus {
-    border-color: var(--primary);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(35,139,208,.10);
+.input-box input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(71,139,255,.13);
 }
 
-input::placeholder {
-    color: #aab7c4;
-    font-weight: 400;
+.input-box input::placeholder {
+  color: #617895;
 }
 
-.hint {
-    font-size: 10px;
-    color: #91a0af;
-    margin-top: 8px;
+.login-button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(110deg,#3679ef,#36bce4);
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 10px 25px rgba(55,125,240,.23);
+  transition: .25s;
 }
 
-/* Button */
-.btn-search {
-    width: 100%;
-    height: 54px;
-    border: none;
-    border-radius: 12px;
-    background: linear-gradient(110deg, #1676b8, #269ddd);
-    color: white;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(35,139,208,.23);
-    transition: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+.login-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-.btn-search:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(35,139,208,.35);
+.login-button:disabled {
+  opacity: .6;
+  cursor: wait;
 }
 
-.btn-search:disabled {
-    opacity: .7;
-    cursor: not-allowed;
-    transform: none;
+.error-message {
+  display: none;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 15px;
+  background: rgba(255,80,80,.1);
+  color: #ffaaaa;
+  border: 1px solid rgba(255,80,80,.2);
+  font-size: 11px;
+  line-height: 1.6;
 }
 
-/* Loading */
-.loader-area {
-    display: none;
-    text-align: center;
-    padding: 25px 0 5px;
+.login-footer {
+  text-align: center;
+  color: #7086a5;
+  font-size: 10px;
+  margin-top: 28px;
 }
 
-.spinner {
-    width: 35px;
-    height: 35px;
-    border: 3px solid #dcecf8;
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
-    margin: auto;
+/* DASHBOARD */
+
+.dashboard {
+  display: none;
+  width: 100%;
+  max-width: 1120px;
+  margin: auto;
+  padding: 35px 28px;
+  animation: fadeIn .5s ease;
 }
 
-.loader-area p {
-    color: var(--muted);
-    font-size: 11px;
-    margin-top: 12px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Result */
-.result {
-    display: none;
-    margin-top: 23px;
-    padding: 20px;
-    border-radius: 15px;
-    animation: fadeUp .4s ease;
+/* HEADER */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 19px 25px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background: rgba(16,31,55,.82);
+  margin-bottom: 34px;
 }
 
-.result.success {
-    background: #effaf4;
-    border: 1px solid #ccebd9;
-    color: #17643c;
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
-.result.warning {
-    background: #fff8e9;
-    border: 1px solid #f3dfad;
-    color: #89600d;
+.header-logo {
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#397ef2,#42c7e9);
+  font-size: 21px;
 }
 
-.result.error {
-    background: #fff1f1;
-    border: 1px solid #f2cccc;
-    color: #a32d37;
+.header-brand h3 {
+  font-size: 13px;
+  font-weight: 800;
 }
 
-.result-icon {
-    font-size: 27px;
-    margin-bottom: 10px;
+.header-brand p {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1.4px;
+  margin-top: 4px;
 }
 
-.result h3 {
-    font-size: 16px;
-    margin-bottom: 6px;
+.logout-btn {
+  padding: 11px 17px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(255,255,255,.04);
+  color: #d8e5f7;
+  font-size: 11px;
+  font-weight: 700;
+  transition: .2s;
 }
 
-.result p {
-    font-size: 12px;
-    line-height: 1.8;
+.logout-btn:hover {
+  background: rgba(255,255,255,.1);
 }
 
-.student-info {
-    background: rgba(255,255,255,.75);
-    padding: 13px;
-    border-radius: 10px;
-    margin-top: 15px;
+/* HERO */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
-.student-info div {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    font-size: 11px;
-    padding: 6px 0;
+.hero-label {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
 }
 
-.student-info span:first-child {
-    color: #718397;
+.hero h1 {
+  font-size: clamp(25px,4vw,36px);
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
-.student-info span:last-child {
-    font-weight: 700;
-    text-align: right;
-    word-break: break-word;
+.hero p {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 11px;
+  line-height: 1.8;
 }
 
-.status-label {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 9px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 800;
-    background: rgba(255,255,255,.7);
+.hero-icon {
+  width: 95px;
+  height: 95px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 25px;
+  background: linear-gradient(145deg,rgba(71,139,255,.22),rgba(91,212,237,.08));
+  border: 1px solid rgba(91,212,237,.2);
+  color: #70d8f4;
+  font-size: 43px;
 }
 
-.result small {
-    display: block;
-    margin-top: 13px;
-    font-size: 10px;
-    line-height: 1.7;
+/* STUDENT INFO */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 17px;
 }
 
-/* Footer */
+.section-heading i {
+  color: var(--cyan);
+  font-size: 19px;
+}
+
+.section-heading h2 {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font-size: 10px;
+  margin-left: auto;
+}
+
+/* STUDENT PROFILE */
+
+.profile-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 32px;
+}
+
+.data-card {
+  padding: 23px;
+  min-width: 0;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+  background: rgba(16,31,55,.84);
+  transition: .25s;
+}
+
+.data-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(91,212,237,.3);
+}
+
+.data-icon {
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(71,139,255,.12);
+  color: #73b4ff;
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+.data-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  margin-bottom: 9px;
+}
+
+.data-value {
+  font-size: 15px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+/* ACCOUNT CARD */
+
+.account-card {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 19px;
+  background:
+    linear-gradient(115deg,#17385e,#102644 65%,#12344c);
+  border: 1px solid rgba(91,212,237,.18);
+  margin-bottom: 25px;
+}
+
+.account-card::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 50%;
+  right: -80px;
+  top: -130px;
+  box-shadow: 0 0 0 30px rgba(255,255,255,.015),
+              0 0 0 60px rgba(255,255,255,.012);
+  pointer-events: none;
+}
+
+.account-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 27px;
+  gap: 15px;
+}
+
+.account-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-title i {
+  font-size: 22px;
+  color: #75dcf3;
+}
+
+.account-title h2 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.account-title p {
+  font-size: 10px;
+  color: #9bb4d1;
+  margin-top: 5px;
+}
+
+.active-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 30px;
+  background: rgba(67,214,160,.12);
+  color: #70edbb;
+  font-size: 9px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.active-badge i {
+  font-size: 11px;
+}
+
+.account-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.credential {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 13px;
+  background: rgba(4,18,38,.33);
+}
+
+.credential-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a9c3e1;
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: .5px;
+}
+
+.credential-label i {
+  color: #69d8f2;
+  font-size: 15px;
+}
+
+.credential-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.credential-value {
+  font-size: 16px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+  color: white;
+  min-width: 0;
+  user-select: text;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 9px;
+  background: rgba(255,255,255,.08);
+  color: #c9e7ff;
+  font-size: 15px;
+  transition: .2s;
+}
+
+.copy-btn:hover {
+  background: rgba(91,212,237,.2);
+  border-color: #5bd4ed;
+}
+
+/* FOOTER */
+
 .footer {
-    text-align: center;
-    margin-top: 24px;
-    color: rgba(255,255,255,.55);
-    font-size: 10px;
-    line-height: 2;
-}
-
-.footer strong {
-    color: #b7dcf7;
-    font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 3px;
+  border-top: 1px solid var(--border);
+  color: #758ba8;
+  font-size: 10px;
+  gap: 15px;
 }
 
 .footer i {
-    color: #66b9ec;
+  color: #58d5a8;
+  margin-right: 5px;
 }
 
-/* Animations */
-@keyframes spin {
-    to { transform: rotate(360deg); }
+/* TOAST */
+
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%,20px);
+  padding: 13px 20px;
+  border-radius: 12px;
+  background: #18395a;
+  border: 1px solid rgba(91,212,237,.3);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  z-index: 10;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%,0);
 }
 
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+/* RESPONSIVE */
+
+@media(max-width:700px) {
+  .dashboard {
+    padding: 20px 15px;
+  }
+
+  .header {
+    padding: 15px;
+    margin-bottom: 27px;
+  }
+
+  .header-brand h3 {
+    font-size: 11px;
+  }
+
+  .logout-btn {
+    padding: 10px;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+
+  .hero-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 29px;
+    border-radius: 18px;
+  }
+
+  .profile-card {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .account-card {
+    padding: 22px 17px;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credential-value {
+    font-size: 14px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-/* Responsive */
-@media(max-width: 480px) {
-    body {
-        padding: 25px 15px;
-    }
+@media(max-width:420px) {
+  .login-card {
+    padding: 28px 22px;
+  }
 
-    .card {
-        padding: 26px 21px;
-        border-radius: 21px;
-    }
+  .profile-card {
+    grid-template-columns: 1fr;
+  }
 
-    .school-header h1 {
-        font-size: 21px;
-    }
+  .hero h1 {
+    font-size: 25px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
 
-    <!-- HEADER SEKOLAH -->
-    <div class="school-header">
-        <div class="logo">
-            <i class="bi bi-mortarboard-fill"></i>
-        </div>
+<!-- LOGIN -->
 
-        <h1>SMPK 3 PENABUR</h1>
-        <p>LEARN • GROW • SERVE</p>
+<section class="login-screen" id="loginScreen">
+
+  <div class="login-card">
+
+    <div class="brand">
+      <div class="brand-icon">
+        <i class="bi bi-mortarboard-fill"></i>
+      </div>
+      <div>
+        <h3>SMPK 3 PENABUR</h3>
+        <p>STUDENT INFORMATION PORTAL</p>
+      </div>
     </div>
 
-    <!-- MAIN CARD -->
-    <div class="card">
+    <div class="login-title">Selamat Datang!</div>
 
-        <div class="card-heading">
-            <div class="heading-icon">
-                <i class="bi bi-person-lock"></i>
-            </div>
+    <p class="login-desc">
+      Silakan masuk untuk melihat informasi
+      akun Bebras Anda melalui portal siswa.
+    </p>
 
-            <h2>Portal Akun Siswa</h2>
+    <form id="formLogin" onsubmit="prosesLogin(event)">
 
-            <p>
-                Selamat datang di Sistem Informasi Akun Siswa.
-                Masukkan NISN untuk memeriksa status akun pembelajaran Anda.
-            </p>
+      <div class="form-group">
+        <label>NOMOR INDUK SISWA NASIONAL</label>
+        <div class="input-box">
+          <i class="bi bi-person-vcard"></i>
+          <input
+            type="text"
+            id="nisn"
+            placeholder="Masukkan 10 digit NISN"
+            maxlength="10"
+            inputmode="numeric"
+            autocomplete="username"
+            required>
         </div>
+      </div>
 
-        <!-- FORM -->
-        <form id="formAkun">
-
-            <div class="form-group">
-                <label for="nisn">
-                    NOMOR INDUK SISWA NASIONAL (NISN)
-                </label>
-
-                <div class="input-wrapper">
-                    <i class="bi bi-person-vcard"></i>
-
-                    <input
-                        type="text"
-                        id="nisn"
-                        maxlength="10"
-                        inputmode="numeric"
-                        autocomplete="off"
-                        placeholder="Masukkan 10 digit NISN..."
-                        required
-                    >
-                </div>
-
-                <div class="hint">
-                    <i class="bi bi-info-circle"></i>
-                    Pastikan NISN yang dimasukkan sudah benar.
-                </div>
-            </div>
-
-            <button type="submit" class="btn-search" id="btnCek">
-                <i class="bi bi-search"></i>
-                CEK AKUN SAYA
-            </button>
-
-        </form>
-
-        <!-- LOADING -->
-        <div class="loader-area" id="loader">
-            <div class="spinner"></div>
-            <p>Sedang memeriksa data akun Anda...</p>
+      <div class="form-group">
+        <label>KODE LOGIN</label>
+        <div class="input-box">
+          <i class="bi bi-shield-lock"></i>
+          <input
+            type="password"
+            id="kodeLogin"
+            placeholder="Masukkan kode login"
+            autocomplete="current-password"
+            required>
         </div>
+      </div>
 
-        <!-- HASIL -->
-        <div class="result" id="result" role="status" aria-live="polite"></div>
+      <button type="submit" class="login-button" id="btnLogin">
+        <span id="btnText">
+          Masuk ke Portal <i class="bi bi-arrow-right"></i>
+        </span>
+      </button>
+
+      <div class="error-message" id="errorMessage"></div>
+
+    </form>
+
+    <div class="login-footer">
+      © 2026 SMPK 3 PENABUR · All Rights Reserved
+    </div>
+
+  </div>
+</section>
+
+
+<!-- DASHBOARD -->
+
+<main class="dashboard" id="dashboard">
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="header-brand">
+      <div class="header-logo">
+        <i class="bi bi-mortarboard-fill"></i>
+      </div>
+      <div>
+        <h3>SMPK 3 PENABUR</h3>
+        <p>STUDENT ACCOUNT PORTAL</p>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">
+      <i class="bi bi-box-arrow-right"></i>
+      Keluar
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div>
+      <div class="hero-label">STUDENT DASHBOARD</div>
+      <h1>Informasi Akun Bebras</h1>
+      <p>
+        Selamat datang. Berikut adalah informasi identitas
+        dan akun Bebras Anda.
+      </p>
+    </div>
+
+    <div class="hero-icon">
+      <i class="bi bi-award"></i>
+    </div>
+
+  </section>
+
+
+  <!-- DATA SISWA -->
+
+  <div class="section-heading">
+    <i class="bi bi-person-vcard"></i>
+    <h2>Identitas Siswa</h2>
+    <span>STUDENT PROFILE</span>
+  </div>
+
+  <section class="profile-card">
+
+    <div class="data-card">
+      <div class="data-icon">
+        <i class="bi bi-fingerprint"></i>
+      </div>
+      <div class="data-label">NOMOR INDUK SISWA</div>
+      <div class="data-value" id="nisnValue">-</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-icon">
+        <i class="bi bi-person"></i>
+      </div>
+      <div class="data-label">NAMA LENGKAP</div>
+      <div class="data-value" id="namaValue">-</div>
+    </div>
+
+    <div class="data-card">
+      <div class="data-icon">
+        <i class="bi bi-mortarboard"></i>
+      </div>
+      <div class="data-label">KELAS</div>
+      <div class="data-value" id="kelasValue">-</div>
+    </div>
+
+  </section>
+
+
+  <!-- AKUN BEBRAS -->
+
+  <div class="section-heading">
+    <i class="bi bi-key"></i>
+    <h2>Informasi Akun Bebras</h2>
+    <span>ACCOUNT CREDENTIALS</span>
+  </div>
+
+  <section class="account-card">
+
+    <div class="account-top">
+
+      <div class="account-title">
+        <i class="bi bi-globe2"></i>
+        <div>
+          <h2>Bebras Challenge Account</h2>
+          <p>Informasi login akun peserta</p>
+        </div>
+      </div>
+
+      <div class="active-badge">
+        <i class="bi bi-check-circle-fill"></i>
+        VERIFIED
+      </div>
 
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        <strong>SMPK 3 PENABUR</strong><br>
-        Sistem Informasi Akademik dan Akun Siswa<br>
-        <i class="bi bi-shield-check"></i>
-        Secure Student Information Portal
-        <br>
-        © 2026 SMPK 3 PENABUR. All Rights Reserved.
+    <div class="account-grid">
+
+      <!-- USERNAME -->
+
+      <div class="credential">
+
+        <div class="credential-label">
+          <i class="bi bi-person-circle"></i>
+          USER BEBRAS
+        </div>
+
+        <div class="credential-bottom">
+          <div class="credential-value" id="userValue">-</div>
+
+          <button class="copy-btn"
+            onclick="salinData('userValue','Username')"
+            title="Salin username">
+            <i class="bi bi-copy"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- PASSWORD -->
+
+      <div class="credential">
+
+        <div class="credential-label">
+          <i class="bi bi-shield-lock"></i>
+          PASSWORD BEBRAS
+        </div>
+
+        <div class="credential-bottom">
+          <div class="credential-value" id="passwordValue">-</div>
+
+          <button class="copy-btn"
+            onclick="salinData('passwordValue','Password')"
+            title="Salin password">
+            <i class="bi bi-copy"></i>
+          </button>
+        </div>
+
+      </div>
+
     </div>
 
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+    <span>
+      <i class="bi bi-shield-check"></i>
+      Informasi akun siswa terverifikasi
+    </span>
+
+    <span>© 2026 SMPK 3 PENABUR</span>
+  </footer>
+
+</main>
+
+
+<div class="toast" id="toast">
+  <i class="bi bi-check-circle-fill"></i>
+  Berhasil disalin!
 </div>
+
 
 <script>
 
-// Ganti dengan endpoint backend sekolah yang sudah diamankan.
-const API_URL = "/api/cek-akun-siswa";
+// LOGIN
 
-const form = document.getElementById("formAkun");
-const nisnInput = document.getElementById("nisn");
-const btn = document.getElementById("btnCek");
-const loader = document.getElementById("loader");
-const result = document.getElementById("result");
+function prosesLogin(event) {
+  event.preventDefault();
 
-nisnInput.addEventListener("input", function() {
-    this.value = this.value.replace(/\D/g, "").slice(0, 10);
-});
+  const nisn = document.getElementById("nisn").value.trim();
+  const kode = document.getElementById("kodeLogin").value.trim();
 
-form.addEventListener("submit", async function(e) {
+  const button = document.getElementById("btnLogin");
+  const btnText = document.getElementById("btnText");
+  const error = document.getElementById("errorMessage");
 
-    e.preventDefault();
+  error.style.display = "none";
 
-    const nisn = nisnInput.value.trim();
+  if (!/^\d{10}$/.test(nisn)) {
+    tampilkanError("NISN harus terdiri dari 10 angka.");
+    return;
+  }
 
-    if (!/^\d{10}$/.test(nisn)) {
-        tampilkanPesan(
-            "NISN harus terdiri dari 10 digit angka.",
-            "error"
+  button.disabled = true;
+  btnText.innerHTML =
+    '<i class="bi bi-arrow-repeat"></i> Memeriksa akun...';
+
+  google.script.run
+
+    .withSuccessHandler(function(response) {
+
+      button.disabled = false;
+      btnText.innerHTML =
+        'Masuk ke Portal <i class="bi bi-arrow-right"></i>';
+
+      if (response && response.success) {
+        tampilkanDashboard(response.siswa);
+      } else {
+        tampilkanError(
+          response && response.message
+            ? response.message
+            : "Login gagal."
         );
-        return;
-    }
+      }
 
-    loader.style.display = "block";
-    result.style.display = "none";
-    btn.disabled = true;
+    })
 
-    try {
+    .withFailureHandler(function(err) {
 
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "same-origin",
-            body: JSON.stringify({ nisn: nisn })
-        });
+      button.disabled = false;
+      btnText.innerHTML =
+        'Masuk ke Portal <i class="bi bi-arrow-right"></i>';
 
-        if (!response.ok) {
-            throw new Error("Gagal mengambil data akun.");
-        }
+      tampilkanError("Koneksi gagal. Silakan coba kembali.");
+      console.error(err);
 
-        const data = await response.json();
+    })
 
-        if (!data.found) {
-            tampilkanPesan(
-                "NISN tidak ditemukan. Silakan periksa kembali nomor NISN Anda.",
-                "error"
-            );
-            return;
-        }
-
-        if (!data.accountReady) {
-            tampilkanStatusAkun(data, false);
-        } else {
-            tampilkanStatusAkun(data, true);
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        tampilkanPesan(
-            "Terjadi kendala saat menghubungkan ke server. Silakan coba kembali atau hubungi Tim IT Sekolah.",
-            "error"
-        );
-
-    } finally {
-
-        loader.style.display = "none";
-        btn.disabled = false;
-
-    }
-
-});
-
-function tampilkanPesan(pesan, tipe) {
-
-    result.className = "result " + tipe;
-    result.replaceChildren();
-
-    const icon = document.createElement("div");
-    icon.className = "result-icon";
-
-    const heading = document.createElement("h3");
-    heading.textContent =
-        tipe === "error" ? "Informasi" : "Pemberitahuan";
-
-    const description = document.createElement("p");
-    description.textContent = pesan;
-
-    icon.innerHTML =
-        tipe === "error"
-        ? '<i class="bi bi-exclamation-circle"></i>'
-        : '<i class="bi bi-info-circle"></i>';
-
-    result.append(icon, heading, description);
-    result.style.display = "block";
+    .loginSiswa(nisn, kode);
 }
 
-function tampilkanStatusAkun(data, siap) {
 
-    result.className = "result " + (siap ? "success" : "warning");
-    result.replaceChildren();
+// ERROR
 
-    const icon = document.createElement("div");
-    icon.className = "result-icon";
-    icon.innerHTML = siap
-        ? '<i class="bi bi-check-circle-fill"></i>'
-        : '<i class="bi bi-exclamation-triangle-fill"></i>';
+function tampilkanError(pesan) {
+  const error = document.getElementById("errorMessage");
+  error.textContent = pesan;
+  error.style.display = "block";
+}
 
-    const heading = document.createElement("h3");
-    heading.textContent = "Halo, " + data.nama + "!";
 
-    const description = document.createElement("p");
-    description.textContent = siap
-        ? "Data siswa berhasil ditemukan. Akun pembelajaran Anda telah tersedia."
-        : "Data siswa berhasil ditemukan, tetapi Anda belum mempunyai akun pembelajaran.";
+// DASHBOARD
 
-    const info = document.createElement("div");
-    info.className = "student-info";
+function tampilkanDashboard(data) {
 
-    const fields = [
-        ["NISN", data.nisn],
-        ["Nama Siswa", data.nama],
-        ["Kelas", data.kelas]
-    ];
+  document.getElementById("nisnValue").textContent = data.nisn;
+  document.getElementById("namaValue").textContent = data.nama;
+  document.getElementById("kelasValue").textContent = data.kelas;
 
-    if (siap && data.email) {
-        fields.push(["Email Pembelajaran", data.email]);
-    }
+  // Username dan password ditampilkan langsung
+  document.getElementById("userValue").textContent =
+    data.userBebras || "-";
 
-    fields.forEach(([label, value]) => {
-        const row = document.createElement("div");
-        const left = document.createElement("span");
-        const right = document.createElement("span");
+  document.getElementById("passwordValue").textContent =
+    data.passwordBebras || "-";
 
-        left.textContent = label;
-        right.textContent = value || "-";
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("dashboard").style.display = "block";
 
-        row.append(left, right);
-        info.appendChild(row);
-    });
+  window.scrollTo(0, 0);
+}
 
-    const status = document.createElement("div");
-    status.className = "status-label";
-    status.textContent = siap
-        ? "✓ AKUN PEMBELAJARAN AKTIF"
-        : "⚠ AKUN BELUM TERSEDIA";
 
-    const note = document.createElement("small");
-    note.textContent = siap
-        ? "Jaga kerahasiaan informasi akun Anda. Jika mengalami kendala login, hubungi Tim IT Sekolah."
-        : "Silakan hubungi Wali Kelas atau Tim IT Sekolah untuk proses pembuatan akun.";
+// SALIN DATA
 
-    result.append(icon, heading, description, info, status, note);
-    result.style.display = "block";
+async function salinData(elementId, label) {
+
+  const value = document.getElementById(elementId).textContent;
+
+  if (!value || value === "-") return;
+
+  try {
+    await navigator.clipboard.writeText(value);
+    tampilkanToast(label + " berhasil disalin!");
+  } catch (error) {
+    tampilkanToast("Tidak dapat menyalin. Silakan salin manual.");
+  }
+}
+
+
+// NOTIFIKASI
+
+function tampilkanToast(pesan) {
+
+  const toast = document.getElementById("toast");
+
+  toast.innerHTML =
+    '<i class="bi bi-check-circle-fill"></i> ' + pesan;
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+
+}
+
+
+// LOGOUT
+
+function logout() {
+
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("loginScreen").style.display = "grid";
+
+  document.getElementById("formLogin").reset();
+
+  document.getElementById("nisnValue").textContent = "-";
+  document.getElementById("namaValue").textContent = "-";
+  document.getElementById("kelasValue").textContent = "-";
+  document.getElementById("userValue").textContent = "-";
+  document.getElementById("passwordValue").textContent = "-";
+
+  document.getElementById("errorMessage").style.display = "none";
+
+  window.scrollTo(0, 0);
 }
 
 </script>
